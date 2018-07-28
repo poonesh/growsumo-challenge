@@ -7,9 +7,14 @@ Vue.component('todo-item', {
 	},
 	template: `
 		<li v-bind:style="styleObj">{{ todo.title }}
-			<button>Done</button>
+			<button v-on:click="donePressed">Done</button>
 			<button>Delete</button>
 		</li>
-		`
+		`,
+	methods: {
+		donePressed: function() {
+			this.$emit('done-pressed', this.todo.title);
+		}
+	}
 });
 

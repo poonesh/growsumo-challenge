@@ -1,9 +1,15 @@
+
 const server = io('http://localhost:3003/');
 const app = new Vue({
     el: '#app',
     data:{
         todoList:[
         ]
+    },
+    methods:{
+        taskCompleted:function(event){
+            server.emit('taskCompleted', event);
+        }
     }
 })
 

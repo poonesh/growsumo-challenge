@@ -29,9 +29,19 @@ server.on('connection', (client) => {
         server.emit('lastTodo', newTodo); 
     });
 
+    // Let the Server know that a task is completed
+    client.on('taskCompleted', (completedTask)=>{
+        for(item of DB){
+            if(item.title === completedTask){
+                item.completed = true;
+            };
+        };
+    });
+
     // Send the DB downstream on connect
     reloadTodos();
 });
+
 
 console.log('Waiting for clients to connect');
 server.listen(3003);

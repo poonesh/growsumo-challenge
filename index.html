@@ -14,7 +14,9 @@
             <ul>
                 <todo-item
                     v-for="item in todoList"
-                    v-bind:todo="item">
+                    v-bind:todo="item"
+                    v-on:done-pressed="taskCompleted"
+                    >
                 </todo-item>
             </ul>
         </div>
