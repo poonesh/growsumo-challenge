@@ -1,5 +1,11 @@
 const server = io('http://localhost:3003/');
-const list = document.getElementById('todo-list');
+const app = new Vue({
+    el: '#app',
+    data:{
+        todoList:[
+        ]
+    }
+})
 
 // NOTE: These are all our globally scoped functions for interacting with the server
 // This function adds a new todo from the input
@@ -18,11 +24,7 @@ function add() {
 }
 
 function render(todo) {
-    console.log(todo);
-    const listItem = document.createElement('li');
-    const listItemText = document.createTextNode(todo.title);
-    listItem.appendChild(listItemText);
-    list.append(listItem);
+    app.todoList.push(todo);
 }
 
 // NOTE: These are listeners for events from the server

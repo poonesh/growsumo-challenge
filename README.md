@@ -14,10 +14,10 @@ you've built easy to use and easy on the eyes? :eyes:
 - If you prefer a functional style (or some other style of programming) feel free to switch things up to suit how you write best. The codebase is intentionally small to support different styles/complete rewrites. Don't let how we've set things up get in the way of showing us your best work
 
 ##  Your Quest
-- [ ] Create a repo (ideally on github) and make a `init` commit
-- [ ] Commit often, with high quality comments
-- [ ] Write readable, performant code
-- [ ] Fix all the bugs
+- [X] Create a repo (ideally on github) and make a `init` commit
+- [] Commit often, with high quality comments
+- [] Write readable, performant code
+- [X] Fix all the bugs
 - [ ] Add a feature that allows users to complete tasks
 - [ ] Add a feature that allows users to delete tasks
 - [ ] Add a feature that allows the completion of all tasks
