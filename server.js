@@ -2,21 +2,21 @@ const server = require('socket.io')();
 const firstTodos = require('./data');
 const Todo = require('./todo');
 
+// FIXME: DB is reloading on client refresh. It should be persistent on new client
+// connections from the last time the server was run...
+const DB = firstTodos.map((t) => {
+    // Form new Todo objects
+    return new Todo(title=t.title);
+});
+
 server.on('connection', (client) => {
     // This is going to be our fake 'database' for this application
     // Parse all default Todo's from db
 
-    // FIXME: DB is reloading on client refresh. It should be persistent on new client
-    // connections from the last time the server was run...
-    const DB = firstTodos.map((t) => {
-        // Form new Todo objects
-        return new Todo(title=t.title);
-    });
-
     // Sends a message to the client to reload all todos
     const reloadTodos = () => {
         server.emit('load', DB);
-    }
+    };
 
     // Accepts when a client makes a new todo
     client.on('make', (t) => {
@@ -28,7 +28,7 @@ server.on('connection', (client) => {
 
         // Send the latest todos to the client
         // FIXME: This sends all todos every time, could this be more efficient?
-        reloadTodos();
+        server.emit('lastTodo', newTodo); 
     });
 
     // Send the DB downstream on connect
