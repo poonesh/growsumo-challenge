@@ -9,6 +9,9 @@ const app = new Vue({
     methods:{
         taskCompleted:function(event){
             server.emit('taskCompleted', event);
+        },
+        taskDeleted:function(event){
+            server.emit('taskDeleted', event);
         }
     }
 })
@@ -41,4 +44,24 @@ server.on('load', (todos) => {
 // This event is for rendering the last todo item created by the user from the server
 server.on('lastTodo', (lastTodo) =>{
     render(lastTodo);
+});
+
+// This event is for the completed task sent from the server
+server.on('taskDone',(item) => {
+    for(todo of app.todoList){
+        if(todo.title === item.title){
+            todo.completed = true;
+        }
+    } 
+});
+// This event is for the deleted task sent from the server
+server.on('taskDeleted', (item) =>{
+    for(todo of app.todoList){
+        if(todo.title === item.title){
+            let index = app.todoList.indexOf(todo);
+            if(index > -1){
+                app.todoList.splice(index, 1);
+            }
+        }
+    }
 });

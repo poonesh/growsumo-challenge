@@ -29,13 +29,28 @@ server.on('connection', (client) => {
         server.emit('lastTodo', newTodo); 
     });
 
-    // Let the Server know that a task is completed
+    // Let the Server know that a todo is completed and modify the DB
     client.on('taskCompleted', (completedTask)=>{
         for(item of DB){
             if(item.title === completedTask){
                 item.completed = true;
-            };
-        };
+                server.emit('taskDone', item);
+            }
+        }
+
+    });
+
+    // Let the Server know that a todo is completed and modify the DB 
+    client.on('taskDeleted',(DeletedTask) => {
+        for(item of DB){
+            if(item.title === DeletedTask){
+                let index = DB.indexOf(item);
+                if(index > -1){
+                    DB.splice(index, 1);
+                    server.emit('taskDeleted', item);
+                }
+            }
+        }
     });
 
     // Send the DB downstream on connect
