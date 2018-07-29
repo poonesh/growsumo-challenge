@@ -1,3 +1,6 @@
+# Usage
+Open up two terminal windows and type npm start and npm run separately.
+
 # Challenge
 Hello :wave:
 
@@ -15,15 +18,15 @@ you've built easy to use and easy on the eyes? :eyes:
 
 ##  Your Quest
 - [X] Create a repo (ideally on github) and make a `init` commit
-- [] Commit often, with high quality comments
-- [] Write readable, performant code
+- [X] Commit often, with high quality comments
+- [X] Write readable, performant code
 - [X] Fix all the bugs
 - [X] Add a feature that allows users to complete tasks
 - [X] Add a feature that allows users to delete tasks
 - [X] Add a feature that allows the completion of all tasks
 - [X] Add a feature that allows the deletion of all tasks
-- [ ] Add caching to the client app so that when we lose our connection we can still see our TODO's
-- [ ] Give it some UX/UI :heart:, our approach is make it easy to use- _then_ make it beautiful
+- [X] Add caching to the client app so that when we lose our connection we can still see our TODO's
+- [X] Give it some UX/UI :heart:, our approach is make it easy to use- _then_ make it beautiful
 
 ## Set Up
 This is a Node app so you'll need Node and NPM to get it up on its feet.
