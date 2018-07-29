@@ -1,4 +1,4 @@
-
+let loadedInitial = false;
 const server = io('http://localhost:3003/');
 const app = new Vue({
     el: '#app',
@@ -13,8 +13,28 @@ const app = new Vue({
         taskDeleted:function(event){
             server.emit('taskDeleted', event);
         }
+    },
+    watch:{
+        todoList: function(values){
+            // Adding todos to local storage
+            let todosArray = []
+            for(value of values){
+                todosArray.push({'title': value.title, 'completed': value.completed});
+            }
+            localStorage.setItem('todos', JSON.stringify(todosArray));
+        }
     }
-})
+});
+// Check if the socket connection is failed and append the todos from local storage to app.todoList
+server.on('connect_error',() =>{
+    if(!loadedInitial){
+        let todosArray = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')): [];
+        for(todo of todosArray){
+            app.todoList.push(todo);
+        }
+        loadedInitial = true;
+    }
+});
 
 // NOTE: These are all our globally scoped functions for interacting with the server
 // This function adds a new todo from the input
@@ -50,7 +70,11 @@ function render(todo) {
 // NOTE: These are listeners for events from the server
 // This event is for (re)loading the entire list of todos from the server
 server.on('load', (todos) => {
-    todos.forEach((todo) => render(todo));
+    app.todoList.splice(0, app.todoList.length);
+    loadedInitial = true;
+    todos.forEach((todo) =>{
+        render(todo);
+    });
 });
 // This event is for rendering the last todo item created by the user from the server
 server.on('lastTodo', (lastTodo) =>{
