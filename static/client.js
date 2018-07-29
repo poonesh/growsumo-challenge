@@ -49,7 +49,8 @@ function add() {
 
     // Clear the input
     input.value = '';
-    // TODO: refocus the element
+    // refocus the element
+    document.getElementById("todo-input").focus();
 }
 
 // This function completes all todos
