@@ -40,7 +40,7 @@ server.on('connection', (client) => {
 
     });
 
-    // Let the Server know that a todo is completed and modify the DB 
+    // Let the Server know that a todo is completed and update the DB 
     client.on('taskDeleted',(DeletedTask) => {
         for(item of DB){
             if(item.title === DeletedTask){
@@ -51,6 +51,14 @@ server.on('connection', (client) => {
                 }
             }
         }
+    });
+
+    // Let the Server know all the todos are completed and update the DB
+    client.on('allTasksCompleted', () => {
+        for(item of DB){
+            item.completed = true; 
+        }
+        server.emit('allTasksDone'); 
     });
 
     // Send the DB downstream on connect

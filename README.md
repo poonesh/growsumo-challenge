@@ -19,7 +19,7 @@ you've built easy to use and easy on the eyes? :eyes:
 - [] Write readable, performant code
 - [X] Fix all the bugs
 - [X] Add a feature that allows users to complete tasks
-- [ ] Add a feature that allows users to delete tasks
+- [X] Add a feature that allows users to delete tasks
 - [ ] Add a feature that allows the completion of all tasks
 - [ ] Add a feature that allows the deletion of all tasks
 - [ ] Add caching to the client app so that when we lose our connection we can still see our TODO's

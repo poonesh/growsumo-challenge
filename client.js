@@ -32,6 +32,12 @@ function add() {
     // TODO: refocus the element
 }
 
+// This function completes all todos
+function completeAllTasks() {
+    server.emit('allTasksCompleted');       
+}
+
+// This function append the latest todo to the data(todoList) of the view app
 function render(todo) {
     app.todoList.push(todo);
 }
@@ -54,6 +60,7 @@ server.on('taskDone',(item) => {
         }
     } 
 });
+
 // This event is for the deleted task sent from the server
 server.on('taskDeleted', (item) =>{
     for(todo of app.todoList){
@@ -63,5 +70,12 @@ server.on('taskDeleted', (item) =>{
                 app.todoList.splice(index, 1);
             }
         }
+    }
+});
+
+// This event is for completing the entire tasks sent from the server
+server.on('allTasksDone', () =>{
+    for(todo of app.todoList){
+        todo.completed = true;
     }
 });
