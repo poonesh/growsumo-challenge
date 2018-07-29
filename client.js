@@ -37,6 +37,11 @@ function completeAllTasks() {
     server.emit('allTasksCompleted');       
 }
 
+// This function deletes all todos
+function deleteAllTasks() {
+    server.emit('allTasksDeleted');   
+}
+
 // This function append the latest todo to the data(todoList) of the view app
 function render(todo) {
     app.todoList.push(todo);
@@ -78,4 +83,9 @@ server.on('allTasksDone', () =>{
     for(todo of app.todoList){
         todo.completed = true;
     }
+});
+
+// This event is for deleting the entire tasks sent from the server
+server.on('deleteAllTasks', () =>{
+    app.todoList.splice(0, (app.todoList).length);    
 });

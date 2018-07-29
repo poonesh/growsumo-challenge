@@ -61,6 +61,12 @@ server.on('connection', (client) => {
         server.emit('allTasksDone'); 
     });
 
+    // Let the Server know all the todos are deleted and update the DB
+    client.on('allTasksDeleted', () =>{
+        DB.splice(0, DB.length);
+        server.emit('deleteAllTasks');
+    });
+
     // Send the DB downstream on connect
     reloadTodos();
 });
