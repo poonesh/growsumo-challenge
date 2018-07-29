@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm test",
     "start" : "node server.js",
-    "run" : "node host.js"
+    "run-script" : "node host.js"
   },
   "repository": {
     "type": "git",
