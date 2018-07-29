@@ -1,5 +1,5 @@
 # Usage
-Open up two terminal windows and type npm start and npm run separately.
+Open up two terminal windows and type `npm start` and `npm run server` separately. And then navigate to `http://localhost:5000`.
 
 # Challenge
 Hello :wave:
